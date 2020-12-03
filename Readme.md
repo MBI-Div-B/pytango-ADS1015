@@ -9,7 +9,7 @@ sudo nano /etc/udev/rules.d/99-com.rules
 ```
 The MODE of the corresponding udev rule has to be changed to 0666:
 ```
-sudo nano /etc/udev/rules.d/99-com.rules
+SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0666"
 ```
 Reload and apply the udev rule by
 ```
