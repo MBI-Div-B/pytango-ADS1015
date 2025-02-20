@@ -16,7 +16,7 @@ from ads1015 import ADS1015 as ads1015
 class ADS1015(Device):
     ADC0 = attribute(
         label="ADC0",
-        dtype="float",
+        dtype="DevDouble",
         access=AttrWriteType.READ,
         unit="V",
         format="%8.4f",
@@ -24,7 +24,7 @@ class ADS1015(Device):
 
     ADC1 = attribute(
         label="ADC1",
-        dtype="float",
+        dtype="DevDouble",
         access=AttrWriteType.READ,
         unit="V",
         format="%8.4f",
@@ -42,13 +42,11 @@ class ADS1015(Device):
 
         self.set_state(DevState.ON)
 
-    @command(dtype_out="float")
     def read_ADC0(self):
         return self.__ads1015.get_compensated_voltage(
             channel="in0/in3", reference_voltage=self.__reference
         )
 
-    @command(dtype_out="float")
     def read_ADC1(self):
         return self.__ads1015.get_compensated_voltage(
             channel="in1/in3", reference_voltage=self.__reference
